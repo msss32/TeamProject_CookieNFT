@@ -10,6 +10,8 @@ const HeaderWrap = styled.div`
 
 const MainLink = styled.div`
   width: 18vw;
+  font-family: "CookieRun";
+  font-weight: 700;
   font-size: 3vw;
   text-align: center;
   line-height: 10vh;
@@ -23,6 +25,8 @@ const MenuWrap = styled.div`
   display: flex;
   justify-content: space-around;
   & > div {
+    font-family: "CookieRun";
+    font-weight: 400;
     font-size: 2vw;
     text-align: center;
     line-height: 10vh;
