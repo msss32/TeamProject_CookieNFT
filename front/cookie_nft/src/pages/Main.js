@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { MainSlide } from "../component";
 
 const Main = () => {
   return (
-    <div>Main 페이지 & 판매 페이지</div>
-  )
-}
+    <>
+      <MainSlide />
+    </>
+  );
+};
 
-export default Main
+export default Main;
