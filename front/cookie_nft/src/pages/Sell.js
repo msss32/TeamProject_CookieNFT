@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
 
 const Sell = () => {
-  return (
-    <div>Sell</div>
-  )
-}
+    // reducer에서 값 가져오기
+    const NFTs = useSelector((state) => state.MY_NFT);
+    const index = useSelector((state) => state.SET_INDEX);
 
-export default Sell
+    return (
+        <div>
+            <img src={NFTs[index]} alt="img" />
+            판매하기
+        </div>
+    );
+};
+
+export default Sell;
