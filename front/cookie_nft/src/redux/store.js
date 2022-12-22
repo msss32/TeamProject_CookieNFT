@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { SellNftListSlice } from "./SellNftListSlice";
+import { SellNftListSlice } from "./slice/SellNftListSlice";
 import { NFTReducer, NFTindexReducer } from "./slice";
 
 const rootReducer = combineReducers({
