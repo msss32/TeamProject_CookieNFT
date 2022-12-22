@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const SellNftListSlice = createSlice({
-  name: "sellSlice",
+  name: "SellSlice",
   initialState: {
     img: [
       { imguri: "https://gateway.pinata.cloud/ipfs/QmZ3NactULgeU7PGa7s6PJcaRAFBRA2dwz4RkwRwyrwbQP", name: "Brave Cookie", price: "0.01" },

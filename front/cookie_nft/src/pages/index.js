@@ -1,6 +1,6 @@
 import Main from "./Main";
 import MyNFT from "./MyNFT";
-import Sell from "./Sell";
+import NftInfo from "./NftInfo";
 import Mint from "./Mint";
 
-export { Main, MyNFT, Mint, Sell };
+export { Main, MyNFT, Mint, NftInfo };

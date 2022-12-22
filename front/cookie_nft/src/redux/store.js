@@ -1,11 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { SellNftListSlice } from "./SellNftListSlice";
-import { NFTReducer, NFTindexReducer } from "./slice";
+import { SellNftListSlice } from "./slice/SellNftListSlice";
+import { NFTslice } from "./slice/NFTslice";
+import { NFTindex } from "./slice/IndexSlice";
 
 const rootReducer = combineReducers({
-  MY_NFT: NFTReducer,
-  SET_INDEX: NFTindexReducer,
-  Sell: SellNftListSlice.reducer,
+  MY_NFT: NFTslice.reducer,
+  SET_INDEX: NFTindex.reducer,
+  SellSlice: SellNftListSlice.reducer,
 });
 
 export const store = configureStore({
