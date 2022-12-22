@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import { PickButton } from "../style/MintStyle";
-import ReactPlayer from "react-player";
+import React, { useRef } from "react";
+import CardPick from "../component/CardPick";
 
 const Mint = () => {
-  const [state, setState] = useState(undefined);
+  const cardPickRef = useRef();
+  const cardPick = () => {
+    cardPickRef.current.cardPick();
+  };
   return (
     <>
-      <PickButton onClick={}>뽑기</PickButton>
+      <button className="cardPickBtnMain" onClick={cardPick}>
+        카드뽑기
+      </button>
+      <CardPick ref={cardPickRef} />
     </>
   );
 };
