@@ -4,12 +4,15 @@ const HeaderWrap = styled.div`
   width: 100%;
   height: 10vh;
   background-color: lightgray;
-  display: flex;
-  justify-content: space-between;
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    width: 88.5vw;
+    margin: auto;
+  }
 `;
 
 const MainLink = styled.div`
-  width: 18vw;
   font-family: "CookieRun";
   font-weight: 700;
   font-size: 3vw;
@@ -23,13 +26,14 @@ const MainLink = styled.div`
 const MenuWrap = styled.div`
   width: 40vw;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   & > div {
     font-family: "CookieRun";
     font-weight: 400;
     font-size: 2vw;
     text-align: center;
     line-height: 10vh;
+    margin-left: 3.5vw;
   }
   & > div:hover {
     cursor: pointer;

@@ -3,7 +3,7 @@ import { Brave } from "../image";
 import { SellBox, SellContainer, SellNftName, SellNftPrice, SellTextBox } from "../style/SellNftListStyle";
 import { useSelector } from "react-redux";
 const SellNftList = () => {
-  const sellList = useSelector((state) => state.Sell.img);
+  const sellList = useSelector((state) => state.SellSlice.img);
   console.log(sellList);
   return (
     <div>
