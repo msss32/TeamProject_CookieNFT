@@ -3,7 +3,7 @@ import styled from "styled-components";
 const HeaderWrap = styled.div`
   width: 100%;
   height: 10vh;
-  background-color: lightgray;
+  background-color: #f9cf93;
   & > div {
     display: flex;
     justify-content: space-between;

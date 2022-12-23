@@ -1,5 +1,5 @@
 import React from "react";
-import { Brave } from "../image";
+
 import { SellBox, SellContainer, SellNftName, SellNftPrice, SellTextBox } from "../style/SellNftListStyle";
 import { useSelector } from "react-redux";
 const SellNftList = () => {
