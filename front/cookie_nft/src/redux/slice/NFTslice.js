@@ -4,15 +4,18 @@ export const NFTslice = createSlice({
   name: "NFT",
   initialState: {
     img: [],
-    name: "",
-    price: 0,
+    name: [],
+    price: [],
   },
   reducers: {
     // MY_NFT: (_, {payload}) => payload //이렇게 줄여서 가능함
     MY_NFT: (state, action) => {
       //state.push(action.payload);
-      state.img = action.payload;
+      state.img = action.payload.img;
+      state.name = action.payload.name;
+      state.price = action.payload.price;
     },
+    // 윗부분 extraReducers로 사용할 수 있지 않을깡...
   },
 });
 
