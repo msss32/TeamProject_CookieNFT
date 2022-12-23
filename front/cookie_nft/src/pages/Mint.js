@@ -7,6 +7,8 @@ const Mint = () => {
   const cardPick = () => {
     cardPickRef.current.cardPick();
   };
+  const buyToken = () => {};
+
   return (
     <>
       <div style={{ width: "88.5vw", margin: "auto" }}>
@@ -14,7 +16,9 @@ const Mint = () => {
           <button className="cardPickBtnMain" onClick={cardPick}>
             카드 뽑기
           </button>
-          <button className="tokenSwap">토큰 구매</button>
+          <button className="tokenSwap" onClick={buyToken}>
+            토큰 구매
+          </button>
         </div>
         <CardPick ref={cardPickRef} />
       </div>

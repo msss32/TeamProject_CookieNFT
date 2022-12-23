@@ -1,7 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { TransferForm } from "../component";
-import { NftName, OwendBox, NftPrice, NftInfoContainer } from "../style/NftInfoStyle";
+import {
+  NftName,
+  OwendBox,
+  NftPrice,
+  NftInfoContainer,
+} from "../style/NftInfoStyle";
 
 const NftInfo = () => {
   // reducer에서 값 가져오기
