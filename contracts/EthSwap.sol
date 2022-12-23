@@ -2,13 +2,13 @@
 pragma solidity ^0.8.17;
 
 import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "./CookieToken.sol";
 
 contract EthSwap {
-    ERC20 public token;
+    CookieToken public token;
+    uint public rate = 100;
 
-    uint public rate = 10000;
-
-    constructor(ERC20 _token) {
+    constructor(CookieToken _token) {
         token = _token;
     }
 
@@ -27,16 +27,16 @@ contract EthSwap {
     // 토큰 구매 함수
     function buyToken() public payable {
         uint256 tokenAmount = msg.value * rate;
-        require(token.balanceOf(address(this)) >= tokenAmount, "err");
-        token.transfer(msg.sender, tokenAmount);
+        require(token.totalSupply() >= tokenAmount, "err");
+        token.mintEther(msg.sender, tokenAmount);
     }
 
     // 토큰 판매 함수
-    function sellToken(uint256 _amount) public payable {
-        require(token.balanceOf(msg.sender) >= _amount);
-        uint256 etherAmount = _amount/rate;
+    function sellToken(uint256 tokenAmount) public payable {
+        require(token.balanceOf(msg.sender) >= tokenAmount);
+        uint256 etherAmount = tokenAmount/rate;
         require(address(this).balance >= etherAmount);
-        token.transferFrom(msg.sender, address(this), _amount);
+        token.tokenBurn(msg.sender, tokenAmount);
         payable(msg.sender).transfer(etherAmount);
     }
 }
