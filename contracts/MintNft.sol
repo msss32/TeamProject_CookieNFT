@@ -7,7 +7,7 @@ import "../node_modules/openzeppelin-solidity/contracts/access/Ownable.sol";
 // import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 import "./CookieToken.sol";
 
-contract NFTminting is ERC721Enumerable, Ownable {
+contract MintNft is ERC721Enumerable, Ownable {
 
     CookieToken public cookieT;
 
