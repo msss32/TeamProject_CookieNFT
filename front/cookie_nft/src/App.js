@@ -5,21 +5,30 @@ import Header from "./component/Header";
 import { Routes, Route } from "react-router-dom";
 import Web3 from "web3/dist/web3.min.js";
 // import CookieTokenContract from "./contracts/CookieToken.json";
-import EthSwapContract from "./contracts/EthSwap.json";
+import EthSwapContract from "./contracts/EthSwap.json"; //
+import MintNFTcontract from "./contracts/MintNft.json"; //
 
 function App() {
-    const [instance, setInstance] = useState();
+    const [swapInstance, setSwapInstance] = useState(); //
+    const [mintNFTinstance, setMintNFTinstance] = useState();
 
     const web3 = new Web3(window.ethereum);
 
     useEffect(() => {
         (async () => {
-            const deployed = await new web3.eth.Contract(
-                EthSwapContract.abi,
-                EthSwapContract.networks[5].address
+            const swapDeployed = await new web3.eth.Contract( //
+                EthSwapContract.abi, //
+                EthSwapContract.networks[5].address //
+            );
+            const mintDeployed = await new web3.eth.Contract(
+                MintNFTcontract.abi,
+                MintNFTcontract.networks[5].address
             );
 
-            setInstance(deployed);
+            setSwapInstance(swapDeployed); //
+            setMintNFTinstance(mintDeployed);
+            console.log(swapInstance); //
+            console.log(mintNFTinstance);
         })();
     }, []);
 
