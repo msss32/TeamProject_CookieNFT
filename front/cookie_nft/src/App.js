@@ -20,7 +20,10 @@ function App() {
         EthSwapContract.abi, //
         EthSwapContract.networks[5].address //
       );
-      const mintDeployed = await new web3.eth.Contract(MintNFTcontract.abi, MintNFTcontract.networks[5].address);
+      const mintDeployed = await new web3.eth.Contract(
+        MintNFTcontract.abi,
+        MintNFTcontract.networks[5].address
+      );
 
       setEthSwapInstance(swapDeployed); //
       setMintNFTinstance(mintDeployed);
