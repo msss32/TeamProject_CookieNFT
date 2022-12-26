@@ -11,5 +11,12 @@ module.exports = {
       version: "0.8.17",
     },
   },
+  goerli: {
+    provider: () =>
+      new HDWalletProvider(
+        process.env.MNEMONIC,
+        "https://goerli.infura.io/v3/" + infuraProjectId
+      ),
+    networkId: 5,
+  },
 };
-
