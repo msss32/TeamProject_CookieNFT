@@ -9,30 +9,27 @@ import EthSwapContract from "./contracts/EthSwap.json"; //
 import MintNFTcontract from "./contracts/MintNft.json"; //
 
 function App() {
-    const [swapInstance, setSwapInstance] = useState(); //
-    const [mintNFTinstance, setMintNFTinstance] = useState();
+  const [ethSwapInstance, setEthSwapInstance] = useState(); //
+  const [mintNFTinstance, setMintNFTinstance] = useState();
 
-    const web3 = new Web3(window.ethereum);
+  const web3 = new Web3(window.ethereum);
 
-    useEffect(() => {
-        (async () => {
-            const swapDeployed = await new web3.eth.Contract( //
-                EthSwapContract.abi, //
-                EthSwapContract.networks[5].address //
-            );
-            const mintDeployed = await new web3.eth.Contract(
-                MintNFTcontract.abi,
-                MintNFTcontract.networks[5].address
-            );
+  useEffect(() => {
+    (async () => {
+      const swapDeployed = await new web3.eth.Contract( //
+        EthSwapContract.abi, //
+        EthSwapContract.networks[5].address //
+      );
+      const mintDeployed = await new web3.eth.Contract(MintNFTcontract.abi, MintNFTcontract.networks[5].address);
 
-            setSwapInstance(swapDeployed); //
-            setMintNFTinstance(mintDeployed);
-            console.log(swapInstance); //
-            console.log(mintNFTinstance);
-        })();
-    }, []);
+      setEthSwapInstance(swapDeployed); //
+      setMintNFTinstance(mintDeployed);
+      console.log(ethSwapInstance); //
+      console.log(mintNFTinstance);
+    })();
+  }, []);
 
-    /* 
+  /* 
 const login = async () => {
     try {
       const [_accounts] = await getAccounts();
@@ -61,17 +58,17 @@ const login = async () => {
     }
   };
 */
-    return (
-        <>
-            <Header />
-            <Routes>
-                <Route index element={<Main />} />
-                <Route path="/mynft" element={<MyNFT />} />
-                <Route path="/mint" element={<Mint />} />
-                <Route path="/NftInfo" element={<NftInfo />} />
-            </Routes>
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route index element={<Main />} />
+        <Route path="/mynft" element={<MyNFT />} />
+        <Route path="/mint" element={<Mint />} />
+        <Route path="/NftInfo" element={<NftInfo />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
