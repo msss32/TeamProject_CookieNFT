@@ -5,25 +5,25 @@ import Header from "./component/Header";
 import { Routes, Route } from "react-router-dom";
 import Web3 from "web3/dist/web3.min.js";
 // import CookieTokenContract from "./contracts/CookieToken.json";
-import EthSwapContract from "./contracts/EthSwap.json";
+// import EthSwapContract from "./contracts/EthSwap.json";
 
 function App() {
-    const [instance, setInstance] = useState();
+  const [instance, setInstance] = useState();
 
-    const web3 = new Web3(window.ethereum);
+  const web3 = new Web3(window.ethereum);
 
-    useEffect(() => {
-        (async () => {
-            const deployed = await new web3.eth.Contract(
-                EthSwapContract.abi,
-                EthSwapContract.networks[5].address
-            );
+  // useEffect(() => {
+  //     (async () => {
+  //         const deployed = await new web3.eth.Contract(
+  //             EthSwapContract.abi,
+  //             EthSwapContract.networks[5].address
+  //         );
 
-            setInstance(deployed);
-        })();
-    }, []);
+  //         setInstance(deployed);
+  //     })();
+  // }, []);
 
-    /* 
+  /* 
 const login = async () => {
     try {
       const [_accounts] = await getAccounts();
@@ -52,17 +52,17 @@ const login = async () => {
     }
   };
 */
-    return (
-        <>
-            <Header />
-            <Routes>
-                <Route index element={<Main />} />
-                <Route path="/mynft" element={<MyNFT />} />
-                <Route path="/mint" element={<Mint />} />
-                <Route path="/NftInfo" element={<NftInfo />} />
-            </Routes>
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route index element={<Main />} />
+        <Route path="/mynft" element={<MyNFT />} />
+        <Route path="/mint" element={<Mint />} />
+        <Route path="/NftInfo" element={<NftInfo />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
