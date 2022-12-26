@@ -2,8 +2,8 @@
 pragma solidity ^0.8.17;
 
 
-import "openzeppelin-solidity/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "openzeppelin-solidity/contracts/access/Ownable.sol";
+import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "../node_modules/openzeppelin-solidity/contracts/access/Ownable.sol";
 // import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 import "./CookieToken.sol";
 
