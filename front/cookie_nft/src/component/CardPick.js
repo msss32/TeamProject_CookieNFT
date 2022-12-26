@@ -42,9 +42,13 @@ const CardPick = forwardRef((props, ref) => {
   };
 
   const cardPickExit = () => {
+    const pickFront = document.querySelector(".pickFront");
+    const pickBack = document.querySelector(".pickBack");
+    document.querySelector(".cardPack").style.display = "none";
+    pickFront.classList.remove("frontTurn");
+    pickBack.classList.remove("backTurn");
     document.querySelector(".cardPickBack").style.display = "none";
     document.querySelector(".cardPickExit").style.display = "none";
-    window.location.reload();
   };
 
   const cardOpenOne = () => {

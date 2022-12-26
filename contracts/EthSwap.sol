@@ -27,7 +27,6 @@ contract EthSwap {
     // 토큰 구매 함수
     function buyToken() public payable {
         uint256 tokenAmount = msg.value * rate;
-        require(token.totalSupply() >= tokenAmount, "err");
         token.mintEther(msg.sender, tokenAmount);
     }
 
