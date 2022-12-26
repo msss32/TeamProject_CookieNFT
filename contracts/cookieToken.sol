@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.17;
 
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
 contract CookieToken is ERC20 {
     string public _name = "CookieToken";
