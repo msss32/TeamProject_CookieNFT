@@ -14,7 +14,7 @@ contract CookieToken is ERC20 {
 
     function mintEther(address minter, uint amount) public payable {
         require(totalSupply() <= _totalSupply);
-        _mint(minter, amount);
+        _mint(minter, amount); 
     }
     function tokenBurn(address burner, uint amount) public {
         _burn(burner, amount);
