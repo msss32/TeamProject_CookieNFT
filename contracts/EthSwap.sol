@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "./CookieToken.sol";
 
 contract EthSwap {
@@ -18,7 +18,7 @@ contract EthSwap {
 
     function getSwapBalance() public view returns(uint) {
         return token.balanceOf(msg.sender);
-    }
+    } 
 
     function getMsgSender() public view returns(address) {
         return msg.sender;
@@ -27,7 +27,6 @@ contract EthSwap {
     // 토큰 구매 함수
     function buyToken() public payable {
         uint256 tokenAmount = msg.value * rate;
-        require(token.totalSupply() >= tokenAmount, "err");
         token.mintEther(msg.sender, tokenAmount);
     }
 
