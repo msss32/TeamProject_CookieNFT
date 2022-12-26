@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import CardPick from "../component/CardPick";
 import "../style/MintCss.css";
+import { ETH_SWAP } from "../web3.config";
+import Web3 from "web3";
 
-const Mint = () => {
+const web3 = new Web3(window.ethereum);
+
+const Mint = (props) => {
   const cardPickRef = useRef();
   const cardPick = () => {
     cardPickRef.current.cardPick();
@@ -17,6 +21,15 @@ const Mint = () => {
   const [swapEth, setSwapEth] = useState(0);
 
   const [buySwapSell, setBuySwapSell] = useState(true);
+
+  // console.log(props.account);
+
+  const contractBuyToken = async () => {
+    await ETH_SWAP.methods.buyToken().send({
+      from: props.account, // msg.sender
+      value: web3.utils.toWei(tokenCount, "ether"), // 교환할 돈
+    });
+  };
 
   const swapTokenCount = function (e) {
     setTokenCount(e.target.value);
@@ -68,7 +81,9 @@ const Mint = () => {
         {buySwapSell ? (
           <>
             <div className="buyToken">
-              <button className="tokenSwap third">토큰 구매</button>
+              <button className="tokenSwap third" onClick={contractBuyToken}>
+                토큰 구매
+              </button>
             </div>
             <div
               style={{
@@ -79,16 +94,8 @@ const Mint = () => {
                 marginBottom: "30px",
               }}
             >
-              <input
-                type="text"
-                placeholder="Giv me ur Ether"
-                onChange={swapTokenCount}
-                className="tokenInput"
-                style={{ textAlign: "center" }}
-              />
-              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>
-                ETH
-              </div>
+              <input type="text" placeholder="Giv me ur Ether" onChange={swapTokenCount} className="tokenInput" style={{ textAlign: "center" }} />
+              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>ETH</div>
             </div>
             <div
               style={{
@@ -98,12 +105,7 @@ const Mint = () => {
               }}
             >
               <div className="hoverImg">
-                <img
-                  src="image/exchange.png"
-                  alt="교환아이콘"
-                  width={"55px"}
-                  onClick={buySellSwap}
-                />
+                <img src="image/exchange.png" alt="교환아이콘" width={"55px"} onClick={buySellSwap} />
               </div>
             </div>
             <div
@@ -116,11 +118,7 @@ const Mint = () => {
                 gap: "55px",
               }}
             >
-              <img
-                src="image/braveCookie.png"
-                alt="쿠키아이콘"
-                width={"55px"}
-              />
+              <img src="image/braveCookie.png" alt="쿠키아이콘" width={"55px"} />
               {swapToken} Token
             </div>
           </>
@@ -140,18 +138,8 @@ const Mint = () => {
                 marginBottom: "30px",
               }}
             >
-              <img
-                src="image/braveCookie.png"
-                alt="쿠키아이콘"
-                width={"55px"}
-              />
-              <input
-                type="text"
-                placeholder="Giv me ur CTK"
-                onChange={swapEthCount}
-                className="tokenInput"
-                style={{ textAlign: "center" }}
-              />
+              <img src="image/braveCookie.png" alt="쿠키아이콘" width={"55px"} />
+              <input type="text" placeholder="Giv me ur CTK" onChange={swapEthCount} className="tokenInput" style={{ textAlign: "center" }} />
               Token
             </div>
             <div
@@ -162,12 +150,7 @@ const Mint = () => {
               }}
             >
               <div className="hoverImg">
-                <img
-                  src="image/exchange.png"
-                  alt="교환아이콘"
-                  width={"55px"}
-                  onClick={buySellSwap}
-                />
+                <img src="image/exchange.png" alt="교환아이콘" width={"55px"} onClick={buySellSwap} />
               </div>
             </div>
             <div
@@ -179,9 +162,7 @@ const Mint = () => {
                 marginBottom: "30px",
               }}
             >
-              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>
-                {swapEth} ETH
-              </div>
+              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>{swapEth} ETH</div>
             </div>
           </>
         )}
