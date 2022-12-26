@@ -16,12 +16,13 @@ sequelize
     });
 
 // 리액트 포트 연결
-const options = { origin: "http://localhost:3000" };
+const options = { origin: "http://192.168.0.243:3000" };
 app.use(cors(options));
 app.use(express.json());
 
 // web3 생성 및 연결
-const web3 = new Web3(new Web3.providers.WebsocketProvider("ws://127.0.0.1:9005"));
+const web3 = new Web3(new Web3.providers.WebsocketProvider("ws://192.168.0.243:9005"));
+
 
 // 서버 포트 연결
 app.listen(4000, () => {

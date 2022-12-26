@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/msss32/TeamProject_CookieNFT#readme",
   "dependencies": {
-    "openzeppelin-solidity": "^4.6.0"
+    "openzeppelin-solidity": "^4.6.0",
+    "web3": "^1.8.1"
   },
   "devDependencies": {
     "@truffle/hdwallet-provider": "^2.1.4",
