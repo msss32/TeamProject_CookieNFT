@@ -2,7 +2,7 @@ import Web3 from "web3";
 
 const web3 = new Web3(window.ethereum);
 
-const COOKIE_TOKEN_CONTRACT = "0xe5e4D8518eD077786251d974Cb838a08045E708A";
+const COOKIE_TOKEN_CONTRACT = "0xdf256F0aC364e9dBad0D4FEb0c1930d9F7493603";
 const COOKIE_TOKEN_ABI = [
   {
     inputs: [],
@@ -343,28 +343,8 @@ const COOKIE_TOKEN_ABI = [
   },
 ];
 
-const ETH_SWAP_CONTRACT = "0x6bcEe28F34A38D66dABD970Bc830cF9F68e9600f";
+const ETH_SWAP_CONTRACT = "0x9b15B206b15B13d577110c81F7c19E64324eEB4d";
 const ETH_SWAP_ABI = [
-  {
-    inputs: [],
-    name: "buyToken",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenAmount",
-        type: "uint256",
-      },
-    ],
-    name: "sellToken",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
   {
     inputs: [
       {
@@ -375,6 +355,13 @@ const ETH_SWAP_ABI = [
     ],
     stateMutability: "nonpayable",
     type: "constructor",
+  },
+  {
+    inputs: [],
+    name: "buyToken",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
   },
   {
     inputs: [],
@@ -429,6 +416,19 @@ const ETH_SWAP_ABI = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenAmount",
+        type: "uint256",
+      },
+    ],
+    name: "sellToken",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "token",
     outputs: [
@@ -443,7 +443,7 @@ const ETH_SWAP_ABI = [
   },
 ];
 
-const MINT_NFT_CONTRACT = "0xa8b338644D0a8cFee3aA83e685c8d2154a4C9653";
+const MINT_NFT_CONTRACT = "0x56D4644d5d59bD76f2e609F7eD9837eE02FB7cCa";
 const MINT_NFT_ABI = [
   {
     inputs: [
@@ -1064,7 +1064,7 @@ const MINT_NFT_ABI = [
   },
 ];
 
-const SALE_NFT_CONTRACT = "0x0E91408BD07b7cF68dE6C1661bbB76c0a634fFaD";
+const SALE_NFT_CONTRACT = "0x5F2c70bEDFA1FC127b9fe87A7B92544C17235b06";
 const SALE_NFT_ABI = [
   {
     inputs: [
@@ -1145,7 +1145,7 @@ const SALE_NFT_ABI = [
     name: "minting",
     outputs: [
       {
-        internalType: "contract NFTminting",
+        internalType: "contract MintNft",
         name: "",
         type: "address",
       },
