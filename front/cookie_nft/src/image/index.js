@@ -7,5 +7,17 @@ import Muscle from "./cookie_slide/Muscle.png";
 import MoonLight from "./cookie_slide/MoonLight.png";
 import PureVanilla from "./cookie_slide/PureVanilla.png";
 import Princess from "./cookie_slide/Princess.png";
+import cookie_run from "./loading2.gif";
 
-export { Brave, ClottedCream, FrostQueen, GoldCheese, HollyBerry, Muscle, MoonLight, PureVanilla, Princess };
+export {
+    Brave,
+    ClottedCream,
+    FrostQueen,
+    GoldCheese,
+    HollyBerry,
+    Muscle,
+    MoonLight,
+    PureVanilla,
+    Princess,
+    cookie_run,
+};

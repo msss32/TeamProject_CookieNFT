@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Main, MyNFT, Mint, NftInfo } from "./pages";
 import Header from "./component/Header";
+import Loading from "./component/Loading";
 import { Routes, Route } from "react-router-dom";
 import useWeb3 from "./hooks/useWeb3";
 import MetamaskErr from "./component/MetamaskErr";
 
 function App() {
-  const [web3, account] = useWeb3();
+    const [web3, account] = useWeb3();
 
-  // if (!account) return <MetamaskErr />;
+    // if (!account) return <MetamaskErr />;
 
-  /* 
+    /* 
   const [account, setAccount] = useState();
 
   const getAccount = async () => {
@@ -63,6 +64,24 @@ const login = async () => {
     }
   };
 */
+    return (
+        <>
+            <Header />
+            {!account ? (
+                <MetamaskErr />
+            ) : (
+                <Routes>
+                    <Route index element={<Main />} />
+                    <Route path="/mynft" element={<MyNFT />} />
+                    <Route
+                        path="/mint"
+                        element={<Mint web3={web3} account={account} />}
+                    />
+                    <Route path="/NftInfo" element={<NftInfo />} />
+                </Routes>
+            )}
+        </>
+    );
   return (
     <>
       <Header />

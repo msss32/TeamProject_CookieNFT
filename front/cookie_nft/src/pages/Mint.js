@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CardPick from "../component/CardPick";
 import "../style/MintCss.css";
 import { ETH_SWAP, MINT_NFT } from "../web3.config";
+import Loading from "../component/Loading";
 
 const Mint = ({ web3, account }) => {
   const cardPickRef = useRef();
@@ -9,8 +10,8 @@ const Mint = ({ web3, account }) => {
     cardPickRef.current.cardPick();
   };
 
-  const [deployed, setDeployed] = useState();
-  const [CA, setCA] = useState();
+  // 로딩페이지 활성화 변수
+  const [loading, setLoading] = useState(false);
 
   const [token, setToken] = useState(0);
 
@@ -24,20 +25,22 @@ const Mint = ({ web3, account }) => {
 
   // console.log(props.account);
 
-  /**토큰 구매함수 */
   const contractBuyToken = async () => {
+    setLoading(true);
     await ETH_SWAP.methods.buyToken().send({
       from: account, // msg.sender
       value: web3.utils.toWei(tokenCount, "ether"), // 교환할 돈
     });
+    setLoading(false);
   };
 
-  /**토큰 판매함수 */
   const contractSellToken = async () => {
+    setLoading(true);
     await ETH_SWAP.methods.sellToken(ethCount).send({
       from: account, // msg.sender
       value: ethCount, // 교환할 돈
     });
+    setLoading(false);
   };
 
   /**카드 뽑기 함수 */
@@ -80,10 +83,11 @@ const Mint = ({ web3, account }) => {
 
   return (
     <>
+      {loading ? <Loading /> : null}
       <div style={{ width: "88.5vw", margin: "auto" }}>
         <div className="mintPage">
           <div className="ownToken">보유 토큰 : {token}</div>
-          <button className="cardPickBtnMain third" onClick={cardMinting}>
+          <button className="cardPickBtnMain third" onClick={cardPick}>
             카드 뽑기
           </button>
         </div>
