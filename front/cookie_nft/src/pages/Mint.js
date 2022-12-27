@@ -45,6 +45,7 @@ const Mint = ({ web3, account }) => {
     await MINT_NFT.methods.cookieMint().send({
       from: account,
     });
+    cardPick();
   };
 
   // console.log(MINT_NFT);
@@ -102,8 +103,16 @@ const Mint = ({ web3, account }) => {
                 marginBottom: "30px",
               }}
             >
-              <input type="text" placeholder="Giv me ur Ether" onChange={swapTokenCount} className="tokenInput" style={{ textAlign: "center" }} />
-              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>ETH</div>
+              <input
+                type="text"
+                placeholder="Giv me ur Ether"
+                onChange={swapTokenCount}
+                className="tokenInput"
+                style={{ textAlign: "center" }}
+              />
+              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>
+                ETH
+              </div>
             </div>
             <div
               style={{
@@ -113,7 +122,12 @@ const Mint = ({ web3, account }) => {
               }}
             >
               <div className="hoverImg">
-                <img src="image/exchange.png" alt="교환아이콘" width={"55px"} onClick={buySellSwap} />
+                <img
+                  src="image/exchange.png"
+                  alt="교환아이콘"
+                  width={"55px"}
+                  onClick={buySellSwap}
+                />
               </div>
             </div>
             <div
@@ -126,7 +140,11 @@ const Mint = ({ web3, account }) => {
                 gap: "55px",
               }}
             >
-              <img src="image/braveCookie.png" alt="쿠키아이콘" width={"55px"} />
+              <img
+                src="image/braveCookie.png"
+                alt="쿠키아이콘"
+                width={"55px"}
+              />
               {swapToken} Token
             </div>
           </>
@@ -148,8 +166,18 @@ const Mint = ({ web3, account }) => {
                 marginBottom: "30px",
               }}
             >
-              <img src="image/braveCookie.png" alt="쿠키아이콘" width={"55px"} />
-              <input type="text" placeholder="Giv me ur CTK" onChange={swapEthCount} className="tokenInput" style={{ textAlign: "center" }} />
+              <img
+                src="image/braveCookie.png"
+                alt="쿠키아이콘"
+                width={"55px"}
+              />
+              <input
+                type="text"
+                placeholder="Giv me ur CTK"
+                onChange={swapEthCount}
+                className="tokenInput"
+                style={{ textAlign: "center" }}
+              />
               Token
             </div>
             <div
@@ -160,7 +188,12 @@ const Mint = ({ web3, account }) => {
               }}
             >
               <div className="hoverImg">
-                <img src="image/exchange.png" alt="교환아이콘" width={"55px"} onClick={buySellSwap} />
+                <img
+                  src="image/exchange.png"
+                  alt="교환아이콘"
+                  width={"55px"}
+                  onClick={buySellSwap}
+                />
               </div>
             </div>
             <div
@@ -172,7 +205,9 @@ const Mint = ({ web3, account }) => {
                 marginBottom: "30px",
               }}
             >
-              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>{swapEth} ETH</div>
+              <div style={{ fontFamily: "CookieRun", fontSize: "35px" }}>
+                {swapEth} ETH
+              </div>
             </div>
           </>
         )}
