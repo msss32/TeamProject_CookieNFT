@@ -71,7 +71,7 @@ const login = async () => {
             ) : (
                 <Routes>
                     <Route index element={<Main />} />
-                    <Route path="/mynft" element={<MyNFT />} />
+                    <Route path="/mynft" element={<MyNFT account={account} />} />
                     <Route path="/mint" element={<Mint account={account} />} />
                     <Route path="/NftInfo" element={<NftInfo />} />
                 </Routes>
