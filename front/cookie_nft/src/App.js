@@ -3,34 +3,36 @@ import "./App.css";
 import { Main, MyNFT, Mint, NftInfo } from "./pages";
 import Header from "./component/Header";
 import { Routes, Route } from "react-router-dom";
-import Web3 from "web3/dist/web3.min.js";
-// import CookieTokenContract from "./contracts/CookieToken.json";
-import EthSwapContract from "./contracts/EthSwap.json"; //
-import MintNFTcontract from "./contracts/MintNft.json"; //
+import useWeb3 from "./hooks/useWeb3";
+import MetamaskErr from "./component/MetamaskErr";
 
 function App() {
-  const [ethSwapInstance, setEthSwapInstance] = useState(); //
-  const [mintNFTinstance, setMintNFTinstance] = useState();
+  const [web3, account] = useWeb3();
 
-  const web3 = new Web3(window.ethereum);
+  // if (!account) return <MetamaskErr />;
+
+  /* 
+  const [account, setAccount] = useState();
+
+  const getAccount = async () => {
+    try {
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+
+        setAccount(accounts[0]);
+      } else {
+        alert("Install MetaMask!!!");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    (async () => {
-      const swapDeployed = await new web3.eth.Contract( //
-        EthSwapContract.abi, //
-        EthSwapContract.networks[5].address //
-      );
-      const mintDeployed = await new web3.eth.Contract(
-        MintNFTcontract.abi,
-        MintNFTcontract.networks[5].address
-      );
-
-      setEthSwapInstance(swapDeployed); //
-      setMintNFTinstance(mintDeployed);
-      console.log(ethSwapInstance); //
-      console.log(mintNFTinstance);
-    })();
-  }, []);
+    getAccount();
+  }, []); /*
 
   /* 
 const login = async () => {
@@ -64,12 +66,19 @@ const login = async () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route index element={<Main />} />
-        <Route path="/mynft" element={<MyNFT />} />
-        <Route path="/mint" element={<Mint />} />
-        <Route path="/NftInfo" element={<NftInfo />} />
-      </Routes>
+      {!account ? (
+        <MetamaskErr />
+      ) : (
+        <Routes>
+          <Route index element={<Main />} />
+          <Route path="/mynft" element={<MyNFT />} />
+          <Route
+            path="/mint"
+            element={<Mint web3={web3} account={account} />}
+          />
+          <Route path="/NftInfo" element={<NftInfo />} />
+        </Routes>
+      )}
     </>
   );
 }

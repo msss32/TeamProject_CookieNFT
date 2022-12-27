@@ -20,8 +20,10 @@ const MainLink = styled.div`
   line-height: 10vh;
   &:hover {
     cursor: pointer;
+    color: white;
+    transition: 0.15s;
   }
-`;
+  `;
 
 const MenuWrap = styled.div`
   width: 40vw;
@@ -37,6 +39,8 @@ const MenuWrap = styled.div`
   }
   & > div:hover {
     cursor: pointer;
+    color: white;
+    transition: 0.15s;
   }
 `;
 
