@@ -35,7 +35,7 @@ contract EthSwap {
         require(token.balanceOf(msg.sender) >= tokenAmount);
         uint256 etherAmount = tokenAmount/rate;
         require(address(this).balance >= etherAmount);
-        token.tokenBurn(msg.sender, tokenAmount);
+        // token.tokenBurn(msg.sender, tokenAmount);
         payable(msg.sender).transfer(etherAmount);
     }
 }
