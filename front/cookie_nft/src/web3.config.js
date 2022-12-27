@@ -2,7 +2,7 @@ import Web3 from "web3";
 
 const web3 = new Web3(window.ethereum);
 
-const COOKIE_TOKEN_CONTRACT = "0xdf256F0aC364e9dBad0D4FEb0c1930d9F7493603";
+const COOKIE_TOKEN_CONTRACT = "0xFdD9a656babb3a71121113a3F9B6AB774d84a529";
 const COOKIE_TOKEN_ABI = [
   {
     inputs: [],
@@ -232,6 +232,29 @@ const COOKIE_TOKEN_ABI = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+    ],
+    name: "mintNFT",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "name",
     outputs: [
@@ -343,7 +366,7 @@ const COOKIE_TOKEN_ABI = [
   },
 ];
 
-const ETH_SWAP_CONTRACT = "0x9b15B206b15B13d577110c81F7c19E64324eEB4d";
+const ETH_SWAP_CONTRACT = "0xf39aeA84e02995f0587A13410b14234e9338a0A1";
 const ETH_SWAP_ABI = [
   {
     inputs: [
@@ -443,7 +466,7 @@ const ETH_SWAP_ABI = [
   },
 ];
 
-const MINT_NFT_CONTRACT = "0x56D4644d5d59bD76f2e609F7eD9837eE02FB7cCa";
+const MINT_NFT_CONTRACT = "0x2629c00066FD40E6a0A7807351CA8623BBA88c91";
 const MINT_NFT_ABI = [
   {
     inputs: [
@@ -1064,7 +1087,7 @@ const MINT_NFT_ABI = [
   },
 ];
 
-const SALE_NFT_CONTRACT = "0x5F2c70bEDFA1FC127b9fe87A7B92544C17235b06";
+const SALE_NFT_CONTRACT = "0x21d27D3081837c0CD1aE0d013908d680CA01335f";
 const SALE_NFT_ABI = [
   {
     inputs: [
