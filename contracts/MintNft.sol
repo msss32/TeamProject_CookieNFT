@@ -13,7 +13,7 @@ contract MintNft is ERC721Enumerable, Ownable {
 
     uint constant public MAX_NFT_COUNT = 30;
 
-    uint public mint_price = 10 * (10 ** 18);
+    uint public mint_price = 1 * (10 ** 18);
 
     uint public Common = 1;
     uint public Magic = 6;

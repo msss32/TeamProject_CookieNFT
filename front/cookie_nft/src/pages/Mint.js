@@ -42,9 +42,18 @@ const Mint = ({ web3, account }) => {
     await MINT_NFT.methods.cookieMint().send({
       from: account,
     });
+
+    // //nft 이미지 뽑기 작업중! 일단 주석해 놓은거예여
+    //   let nftNum = await MINT_NFT.methods.tokenOfOwnerByIndex(account, MINT_NFT.methods.balanceOf(account) - 1).call({ from: account });
+    //   console.log(nftNum);
+    //   let nftJson = await MINT_NFT.methods.tokenURI(nftNum).call();
+    //   console.log(nftJson);
+    //   fetch(nftJson)
+    //     .then((response) => response.json())
+    //     .then((data) => cardPick(data.image));
   };
 
-  // console.log(MINT_NFT);
+  console.log(MINT_NFT);
 
   const swapTokenCount = function (e) {
     setTokenCount(e.target.value);
