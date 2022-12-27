@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Web3 from "web3/dist/web3.min.js";
 
 const useWeb3 = () => {
@@ -16,6 +16,7 @@ const useWeb3 = () => {
     (async () => {
       const account = await getRequestAccount();
       const web3 = new Web3(window.ethereum);
+
       setAccount(account);
       setWeb3(web3);
     })();

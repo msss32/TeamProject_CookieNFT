@@ -13,7 +13,7 @@ contract MintNft is ERC721Enumerable, Ownable {
 
     uint constant public MAX_NFT_COUNT = 30;
 
-    uint public mint_price = 10;
+    uint public mint_price = 10 * (10 ** 18);
 
     uint public Common = 1;
     uint public Magic = 6;
@@ -35,6 +35,9 @@ contract MintNft is ERC721Enumerable, Ownable {
     // 민팅 함수
     function cookieMint() public {
         require(MAX_NFT_COUNT >= totalSupply());
+        require(cookieT.balanceOf(msg.sender) >= mint_price, "err");
+
+        cookieT.approve(address(this), mint_price);
 
         cookieT.transferFrom(msg.sender, address(this), mint_price);
 
