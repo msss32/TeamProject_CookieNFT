@@ -346,6 +346,26 @@ const COOKIE_TOKEN_ABI = [
 const ETH_SWAP_CONTRACT = "0x6bcEe28F34A38D66dABD970Bc830cF9F68e9600f";
 const ETH_SWAP_ABI = [
   {
+    inputs: [],
+    name: "buyToken",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenAmount",
+        type: "uint256",
+      },
+    ],
+    name: "sellToken",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "contract CookieToken",
@@ -355,13 +375,6 @@ const ETH_SWAP_ABI = [
     ],
     stateMutability: "nonpayable",
     type: "constructor",
-  },
-  {
-    inputs: [],
-    name: "buyToken",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
   },
   {
     inputs: [],
@@ -413,19 +426,6 @@ const ETH_SWAP_ABI = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenAmount",
-        type: "uint256",
-      },
-    ],
-    name: "sellToken",
-    outputs: [],
-    stateMutability: "payable",
     type: "function",
   },
   {

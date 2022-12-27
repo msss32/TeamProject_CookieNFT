@@ -2,11 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import CardPick from "../component/CardPick";
 import "../style/MintCss.css";
 import { ETH_SWAP } from "../web3.config";
-import Web3 from "web3";
 
-const web3 = new Web3(window.ethereum);
-
-const Mint = (props) => {
+const Mint = ({ web3, account }) => {
   const cardPickRef = useRef();
   const cardPick = () => {
     cardPickRef.current.cardPick();
@@ -26,8 +23,15 @@ const Mint = (props) => {
 
   const contractBuyToken = async () => {
     await ETH_SWAP.methods.buyToken().send({
-      from: props.account, // msg.sender
+      from: account, // msg.sender
       value: web3.utils.toWei(tokenCount, "ether"), // 교환할 돈
+    });
+  };
+
+  const contractSellToken = async () => {
+    await ETH_SWAP.methods.sellToken(ethCount).send({
+      from: account, // msg.sender
+      value: ethCount, // 교환할 돈
     });
   };
 
@@ -125,7 +129,9 @@ const Mint = (props) => {
         ) : (
           <>
             <div className="buyToken">
-              <button className="tokenSwap third">토큰 판매</button>
+              <button className="tokenSwap third" onClick={contractSellToken}>
+                토큰 판매
+              </button>
             </div>
             <div
               style={{
