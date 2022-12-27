@@ -77,18 +77,6 @@ const Mint = ({ web3, account }) => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      if (!web3) return;
-      console.log(web3);
-      const instance = await new web3.eth.Contract(EthSwapContract.abi, EthSwapContract.networks[5].address);
-      const currentToken = await instance.methods.getSwapBalance().call();
-      setToken(currentToken);
-      setDeployed(instance);
-      setCA(EthSwapContract.networks[5].address);
-    })();
-  }, []);
-
   return (
     <>
       <div style={{ width: "88.5vw", margin: "auto" }}>
