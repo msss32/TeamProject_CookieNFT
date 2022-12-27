@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import CardPick from "../component/CardPick";
 import "../style/MintCss.css";
-import { ETH_SWAP } from "../web3.config";
+import { ETH_SWAP, MINT_NFT } from "../web3.config";
+import Loading from "../component/Loading";
 
 const Mint = ({ web3, account }) => {
   const cardPickRef = useRef();
@@ -9,8 +10,8 @@ const Mint = ({ web3, account }) => {
     cardPickRef.current.cardPick();
   };
 
-  const [deployed, setDeployed] = useState();
-  const [CA, setCA] = useState();
+  // 로딩페이지 활성화 변수
+  const [loading, setLoading] = useState(false);
 
   const [token, setToken] = useState(0);
 
@@ -25,18 +26,32 @@ const Mint = ({ web3, account }) => {
   // console.log(props.account);
 
   const contractBuyToken = async () => {
+    setLoading(true);
     await ETH_SWAP.methods.buyToken().send({
       from: account, // msg.sender
       value: web3.utils.toWei(tokenCount, "ether"), // 교환할 돈
     });
+    setLoading(false);
   };
 
   const contractSellToken = async () => {
+    setLoading(true);
     await ETH_SWAP.methods.sellToken(ethCount).send({
       from: account, // msg.sender
       value: ethCount, // 교환할 돈
     });
+    setLoading(false);
   };
+
+  /**카드 뽑기 함수 */
+  const cardMinting = async () => {
+    await MINT_NFT.methods.cookieMint().send({
+      from: account,
+    });
+    cardPick();
+  };
+
+  // console.log(MINT_NFT);
 
   const swapTokenCount = function (e) {
     setTokenCount(e.target.value);
@@ -54,16 +69,6 @@ const Mint = ({ web3, account }) => {
     setSwapEth(ethCount / 100);
   }, [ethCount]);
 
-  const buyToken = async () => {
-    await deployed.methods.buyToken().send({
-      from: account,
-      to: CA,
-      value: web3.utils.toWei(tokenCount.toString(), "ether"),
-    });
-    const currentToken = await deployed.methods.getSwapBalance().call();
-    setToken(currentToken);
-  };
-
   const buySellSwap = function () {
     if (buySwapSell === true) {
       setBuySwapSell(false);
@@ -76,23 +81,9 @@ const Mint = ({ web3, account }) => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      if (!web3) return;
-      console.log(web3);
-      const instance = await new web3.eth.Contract(
-        EthSwapContract.abi,
-        EthSwapContract.networks[5].address
-      );
-      const currentToken = await instance.methods.getSwapBalance().call();
-      setToken(currentToken);
-      setDeployed(instance);
-      setCA(EthSwapContract.networks[5].address);
-    })();
-  }, []);
-
   return (
     <>
+      {loading ? <Loading /> : null}
       <div style={{ width: "88.5vw", margin: "auto" }}>
         <div className="mintPage">
           <div className="ownToken">보유 토큰 : {token}</div>
