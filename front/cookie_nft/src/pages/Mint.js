@@ -31,6 +31,7 @@ const Mint = ({ web3, account }) => {
       from: account, // msg.sender
       value: web3.utils.toWei(tokenCount, "ether"), // 교환할 돈
     });
+    setToken(token + swapToken);
     setLoading(false);
   };
 
@@ -40,6 +41,7 @@ const Mint = ({ web3, account }) => {
       from: account, // msg.sender
       value: ethCount, // 교환할 돈
     });
+    setToken(token - ethCount);
     setLoading(false);
   };
 
@@ -87,7 +89,7 @@ const Mint = ({ web3, account }) => {
       <div style={{ width: "88.5vw", margin: "auto" }}>
         <div className="mintPage">
           <div className="ownToken">보유 토큰 : {token}</div>
-          <button className="cardPickBtnMain third" onClick={cardPick}>
+          <button className="cardPickBtnMain third" onClick={cardMinting}>
             카드 뽑기
           </button>
         </div>
