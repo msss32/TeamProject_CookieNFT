@@ -19,4 +19,7 @@ contract CookieToken is ERC20 {
     function tokenBurn(address burner, uint amount) public {
         _burn(burner, amount);
     }
+    function mintNFT(address _from,address _to, uint _price) external{
+        _transfer(_from, _to, _price);
+    }
 }

@@ -31,7 +31,8 @@ contract SaleNft {
         address nftOwner = minting.ownerOf(_nftId);
         require(nftOwner == msg.sender);
         require(0 < _price);
-        minting.setApprovalForAll(address(this), true);
+        // 여기는 앞단에서 처리하기
+        // minting.setApprovalForAll(address(this), true);
         require(minting.isApprovedForAll(msg.sender, address(this)));
         nftPrices[_nftId] = _price * (10 ** 18);
         SellNftList.push(_nftId);
@@ -43,8 +44,8 @@ contract SaleNft {
         require(nftOwner != msg.sender);
         require(nftPrices[_nftId] > 0);
         require(nftPrices[_nftId] <= cookieT.balanceOf(nftOwner));
-        cookieT.approve(address(this), nftPrices[_nftId]);
-        cookieT.transferFrom(msg.sender, nftOwner, nftPrices[_nftId]);
+        cookieT.mintNFT(msg.sender,nftOwner,nftPrices[_nftId]);
+        // cookieT.transferFrom(msg.sender, nftOwner, nftPrices[_nftId]);
         minting.safeTransferFrom(nftOwner, msg.sender, _nftId);
         nftPrices[_nftId] = 0;
         removeNftList(_nftId);

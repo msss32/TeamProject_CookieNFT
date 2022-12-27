@@ -36,10 +36,8 @@ contract MintNft is ERC721Enumerable, Ownable {
     function cookieMint() public {
         require(MAX_NFT_COUNT >= totalSupply());
         require(cookieT.balanceOf(msg.sender) >= mint_price, "err");
-
-        cookieT.approve(address(this), mint_price);
-
-        cookieT.transferFrom(msg.sender, address(this), mint_price);
+        // cookieToken에 external함수로 만들어둠!
+        cookieT.mintNFT(msg.sender,address(this),mint_price);
 
         getRandomTokenData(msg.sender);
     }
@@ -49,7 +47,6 @@ contract MintNft is ERC721Enumerable, Ownable {
         randNonce++;
         // uint randomNum = uint(keccak256(abi.encodePacked(_owner, randNonce))) % 1000;
         randomNum = uint(keccak256(abi.encodePacked(block.timestamp, _owner, randNonce))) % 1000;
-
         if( 995 <= randomNum ){
             _legendary();
         }
