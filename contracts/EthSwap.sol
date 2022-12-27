@@ -32,10 +32,10 @@ contract EthSwap {
 
     // 토큰 판매 함수
     function sellToken(uint256 tokenAmount) public payable {
-        require(token.balanceOf(msg.sender) >= tokenAmount);
-        uint256 etherAmount = tokenAmount/rate;
-        require(address(this).balance >= etherAmount);
-        // token.tokenBurn(msg.sender, tokenAmount);
+        require(token.balanceOf(msg.sender) >= tokenAmount * (10 ** 18));
+        uint256 etherAmount = (tokenAmount* (10 ** 18))/rate;
+        require(address(this).balance >= etherAmount, "less eth");
+        token.tokenBurn(msg.sender, tokenAmount * (10 ** 18));
         payable(msg.sender).transfer(etherAmount);
     }
 }
