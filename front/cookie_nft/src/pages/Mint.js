@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import CardPick from "../component/CardPick";
 import "../style/MintCss.css";
+import EthSwapContract from "../contracts/EthSwap.json";
 
-const Mint = () => {
+const Mint = ({ web3, account }) => {
   const cardPickRef = useRef();
   const cardPick = () => {
     cardPickRef.current.cardPick();
   };
+
+  const [deployed, setDeployed] = useState();
+  const [CA, setCA] = useState();
 
   const [token, setToken] = useState(0);
 
@@ -34,15 +38,15 @@ const Mint = () => {
     setSwapEth(ethCount / 100);
   }, [ethCount]);
 
-  // const buyToken = async () => {
-  //   await deployed.methods.buyToken().send({
-  //     from: account,
-  //     to: CA,
-  //     value: web3.utils.toWei(tokenCount.toString(), "ether"),
-  //   });
-  //   const currentToken = await deployed.methods.getSwapBalance().call();
-  //   setToken(currentToken);
-  // };
+  const buyToken = async () => {
+    await deployed.methods.buyToken().send({
+      from: account,
+      to: CA,
+      value: web3.utils.toWei(tokenCount.toString(), "ether"),
+    });
+    const currentToken = await deployed.methods.getSwapBalance().call();
+    setToken(currentToken);
+  };
 
   const buySellSwap = function () {
     if (buySwapSell === true) {
@@ -56,6 +60,21 @@ const Mint = () => {
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      if (!web3) return;
+      console.log(web3);
+      const instance = await new web3.eth.Contract(
+        EthSwapContract.abi,
+        EthSwapContract.networks[5].address
+      );
+      const currentToken = await instance.methods.getSwapBalance().call();
+      setToken(currentToken);
+      setDeployed(instance);
+      setCA(EthSwapContract.networks[5].address);
+    })();
+  }, []);
+
   return (
     <>
       <div style={{ width: "88.5vw", margin: "auto" }}>
@@ -68,7 +87,9 @@ const Mint = () => {
         {buySwapSell ? (
           <>
             <div className="buyToken">
-              <button className="tokenSwap third">토큰 구매</button>
+              <button className="tokenSwap third" onClick={buyToken}>
+                토큰 구매
+              </button>
             </div>
             <div
               style={{
