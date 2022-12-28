@@ -1,10 +1,17 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import ReactPlayer from "react-player";
 
 const CardPick = forwardRef((props, ref) => {
   const [state, setState] = useState(undefined);
+  const [imgNumber, setImgNumber] = useState();
   useImperativeHandle(ref, () => ({
-    cardPick: () => {
+    cardPick: (imgNum) => {
+      setImgNumber(imgNum);
       if (state === undefined) {
         setState([...document.querySelector(".cardPickBack").children]);
       } else {
@@ -92,10 +99,24 @@ const CardPick = forwardRef((props, ref) => {
             >
               <div style={{ position: "relative" }}>
                 <div className="cardOne pickFront">
-                  <img src={"https://gateway.pinata.cloud/ipfs/QmRZ4rNq94MMhVg8JwuNmXgWmReHK1rAVD7nLor5Qn52C5"} alt="card" width={"200px"} height={"300px"} />
+                  {imgNumber === undefined ? (
+                    <img src={`image/bomb.gif`} alt="card" width={"200px"} />
+                  ) : (
+                    <img
+                      src={`https://gateway.pinata.cloud/ipfs/QmRV6kroFspzWZiDKJE7fTWw6tbX2ksD1P5owfqWkYp72B/${imgNumber}.png`}
+                      alt="card"
+                      width={"200px"}
+                      height={"300px"}
+                    />
+                  )}
                 </div>
                 <div className="cardOne pickBack">
-                  <img src="image/Card_Back.png" alt="card" width={"200px"} height={"300px"} />
+                  <img
+                    src="image/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
                 </div>
               </div>
             </div>

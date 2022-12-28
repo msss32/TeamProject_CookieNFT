@@ -2,7 +2,7 @@ import Web3 from "web3";
 
 const web3 = new Web3(window.ethereum);
 
-const COOKIE_TOKEN_CONTRACT = "0xFdD9a656babb3a71121113a3F9B6AB774d84a529";
+const COOKIE_TOKEN_CONTRACT = "0x2867fC15eE4b3C116eBD6a2f47c722fcb0292B9E";
 const COOKIE_TOKEN_ABI = [
   {
     inputs: [],
@@ -366,7 +366,7 @@ const COOKIE_TOKEN_ABI = [
   },
 ];
 
-const ETH_SWAP_CONTRACT = "0xf39aeA84e02995f0587A13410b14234e9338a0A1";
+const ETH_SWAP_CONTRACT = "0x9152d8f0627c46F4bBD4be777d9dc1e61b1ec622";
 const ETH_SWAP_ABI = [
   {
     inputs: [
@@ -466,7 +466,7 @@ const ETH_SWAP_ABI = [
   },
 ];
 
-const MINT_NFT_CONTRACT = "0xEd227537B6881D5dFACEFaf0F2a4C4CcCCd4ae2a";
+const MINT_NFT_CONTRACT = "0x22F17F2411A668eA1D3514B7C0e23df5305d99c1";
 const MINT_NFT_ABI = [
   {
     inputs: [
@@ -535,31 +535,6 @@ const MINT_NFT_ABI = [
     type: "event",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "approve",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "cookieMint",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -577,82 +552,6 @@ const MINT_NFT_ABI = [
     ],
     name: "OwnershipTransferred",
     type: "event",
-  },
-  {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "_data",
-        type: "bytes",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        internalType: "bool",
-        name: "approved",
-        type: "bool",
-      },
-    ],
-    name: "setApprovalForAll",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
   },
   {
     anonymous: false,
@@ -680,12 +579,98 @@ const MINT_NFT_ABI = [
     type: "event",
   },
   {
-    inputs: [
+    inputs: [],
+    name: "Common",
+    outputs: [
       {
-        internalType: "address",
-        name: "from",
-        type: "address",
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "Epic",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "Legendary",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "MAX_NFT_COUNT",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "Magic",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "Rare",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "Unique",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
       {
         internalType: "address",
         name: "to",
@@ -697,20 +682,7 @@ const MINT_NFT_ABI = [
         type: "uint256",
       },
     ],
-    name: "transferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "transferOwnership",
+    name: "approve",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -736,15 +708,9 @@ const MINT_NFT_ABI = [
   },
   {
     inputs: [],
-    name: "Common",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
+    name: "cookieMint",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -755,19 +721,6 @@ const MINT_NFT_ABI = [
         internalType: "contract CookieToken",
         name: "",
         type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "Epic",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -811,45 +764,6 @@ const MINT_NFT_ABI = [
         internalType: "bool",
         name: "",
         type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "Legendary",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "Magic",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "MAX_NFT_COUNT",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -954,7 +868,7 @@ const MINT_NFT_ABI = [
   },
   {
     inputs: [],
-    name: "Rare",
+    name: "randomNumView",
     outputs: [
       {
         internalType: "uint256",
@@ -963,6 +877,82 @@ const MINT_NFT_ABI = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "_data",
+        type: "bytes",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "approved",
+        type: "bool",
+      },
+    ],
+    name: "setApprovalForAll",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -1073,21 +1063,44 @@ const MINT_NFT_ABI = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "Unique",
-    outputs: [
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
       {
         internalType: "uint256",
-        name: "",
+        name: "tokenId",
         type: "uint256",
       },
     ],
-    stateMutability: "view",
+    name: "transferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];
 
-const SALE_NFT_CONTRACT = "0x21d27D3081837c0CD1aE0d013908d680CA01335f";
+const SALE_NFT_CONTRACT = "0xc857D7e9afCA42fe4e2F49EDA86b3516cC6Bcc39";
 const SALE_NFT_ABI = [
   {
     inputs: [
@@ -1215,7 +1228,10 @@ const SALE_NFT_ABI = [
   },
 ];
 
-const COOKIE_TOKEN = new web3.eth.Contract(COOKIE_TOKEN_ABI, COOKIE_TOKEN_CONTRACT);
+const COOKIE_TOKEN = new web3.eth.Contract(
+  COOKIE_TOKEN_ABI,
+  COOKIE_TOKEN_CONTRACT
+);
 const ETH_SWAP = new web3.eth.Contract(ETH_SWAP_ABI, ETH_SWAP_CONTRACT);
 const MINT_NFT = new web3.eth.Contract(MINT_NFT_ABI, MINT_NFT_CONTRACT);
 const SALE_NFT = new web3.eth.Contract(SALE_NFT_ABI, SALE_NFT_CONTRACT);

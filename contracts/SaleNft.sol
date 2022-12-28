@@ -25,7 +25,6 @@ contract SaleNft {
         uint price;
     }
 
-
     // nft 판매 등록 함수
     function sellNft(uint _nftId, uint _price) public {
         address nftOwner = minting.ownerOf(_nftId);
