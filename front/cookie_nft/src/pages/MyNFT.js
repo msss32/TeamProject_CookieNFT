@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import NFT from "../component/NFT";
-import { NFTaction } from "../redux/slice/NFTslice";
 import { NFTwrap, MyNFTwrap } from "../style/MyNFTStyle";
 import { MINT_NFT } from "../web3.config";
-import {
-  DarknessWitch,
-  FireFairy,
-  FrostQueen,
-  MoonLight,
-  SeaFairy,
-  WindArcher,
-} from "../test_img";
 
 const MyNFT = ({ account }) => {
   // test images
@@ -19,17 +9,18 @@ const MyNFT = ({ account }) => {
   //   const myNFTname = ["어둠마녀 쿠키", "불꽃정령 쿠키", "서리여왕 쿠키", "달빛술사 쿠키", "바다요정 쿠키", "바람궁수 쿠키"];
   //   const myNFTprice = [0.05, 0.03, 0.04, 0.05, 0.04, 0.02];
 
-  const [myNftArr, setmyNftArr] = useState;
+  const [myNftArr, setmyNftArr] = useState();
+  const [res, resEnd] = useState(false);
 
-  // Hook 할당
-  const dispatch = useDispatch();
+  //   // Hook 할당
+  //   const dispatch = useDispatch();
 
-  // redecer에서 내 NFT가 들어있는 배열 가져오기
-  const NFTs = useSelector((state) => state.MY_NFT.img);
+  //   // redecer에서 내 NFT가 들어있는 배열 가져오기
+  //   const NFTs = useSelector((state) => state.MY_NFT.img);
 
   const getMyNftList = async () => {
     try {
-      const myNftLength = await MINT_NFT.methods.balansOf(account).call();
+      const myNftLength = await MINT_NFT.methods.balanceOf(account).call();
       console.log("내 보유 nft", myNftLength);
       const myNftLengthArr = [];
       for (let i = 0; i < myNftLength; i++) {
@@ -37,28 +28,29 @@ const MyNFT = ({ account }) => {
           .tokenOfOwnerByIndex(account, i)
           .call();
         const myNftURI = await MINT_NFT.methods.tokenURI(myNftTokenId).call();
-
-        myNftLengthArr.push(
-          fetch(myNftURI)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              console.log(data.image);
-            })
-        );
+        fetch(myNftURI)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            myNftLengthArr.push(data.image);
+            if (myNftLengthArr.length === Number(myNftLength)) {
+              setmyNftArr(myNftLengthArr);
+              resEnd(true);
+            }
+          });
       }
-      setmyNftArr(myNftLengthArr);
     } catch (err) {
-      console.log("err");
+      console.log(err);
     }
   };
   //   console.log(MINT_NFT.methods.tokenURI(1).call());
 
   // 랜더링시 실행ㄱ
-  //   useEffect(() => {
-  //     dispatch(NFTaction.MY_NFT({ img: myNFT, name: myNFTname, price: myNFTprice }));
-  //   }, []);
+  useEffect(() => {
+    console.log(account);
+    getMyNftList();
+  }, [res]);
 
   /* 
     // TokenInfo 구조체
