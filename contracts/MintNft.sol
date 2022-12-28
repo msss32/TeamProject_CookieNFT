@@ -4,7 +4,6 @@ pragma solidity ^0.8.17;
 
 import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "../node_modules/openzeppelin-solidity/contracts/access/Ownable.sol";
-// import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 import "./CookieToken.sol";
 
 contract MintNft is ERC721Enumerable, Ownable {
@@ -13,7 +12,7 @@ contract MintNft is ERC721Enumerable, Ownable {
 
     uint constant public MAX_NFT_COUNT = 30;
 
-    uint public mint_price = 10 * (10 ** 18);
+    uint public mint_price = 1 * (10 ** 18);
 
     uint public Common = 1;
     uint public Magic = 6;
@@ -36,12 +35,23 @@ contract MintNft is ERC721Enumerable, Ownable {
     function cookieMint() public {
         require(MAX_NFT_COUNT >= totalSupply());
         require(cookieT.balanceOf(msg.sender) >= mint_price, "err");
-
-        cookieT.approve(address(this), mint_price);
-
-        cookieT.transferFrom(msg.sender, address(this), mint_price);
-
+        // cookieToken에 external함수로 만들어둠!
+        cookieT.mintNFT(msg.sender,address(this),mint_price);
+        if(Legendary == 31) {
+            return;
+        } else if(Epic == 26) {
+            return;
+        } else if(Unique == 21) {
+            return;
+        } else if(Rare == 16) {
+            return;
+        } else if(Magic == 11) {
+            return;
+        } else if(Common == 6) {
+            return;
+        } else {
         getRandomTokenData(msg.sender);
+        }
     }
 
       // 랜덤함수 정의
@@ -49,7 +59,6 @@ contract MintNft is ERC721Enumerable, Ownable {
         randNonce++;
         // uint randomNum = uint(keccak256(abi.encodePacked(_owner, randNonce))) % 1000;
         randomNum = uint(keccak256(abi.encodePacked(block.timestamp, _owner, randNonce))) % 1000;
-
         if( 995 <= randomNum ){
             _legendary();
         }
@@ -74,8 +83,11 @@ contract MintNft is ERC721Enumerable, Ownable {
     // 여기서 숫자가 더 올라가지 않으면 민팅 자체가 안되고 꽝 반환하게!
     function _legendary() private {
         require(Legendary <= 30, "Legendary sold out"); // 26~30
-        _mint(msg.sender,Legendary);
         Legendary++;
+        _mint(msg.sender,Legendary);
+        if(Legendary > 30) {
+            _mint(msg.sender, 5000);
+        }
     }
     function _epic() private {
         require(Epic <= 25,"Epic sold out"); // 21~25
@@ -101,6 +113,10 @@ contract MintNft is ERC721Enumerable, Ownable {
         require(Common <= 5,"Common sold out"); // 1~5
         _mint(msg.sender,Common);
         Common++;
+    }
+
+    function randomNumView() public view returns(uint) {
+        return randomNum;
     }
 
     function tokenURI(uint256 _tokenId) public view override returns (string memory){

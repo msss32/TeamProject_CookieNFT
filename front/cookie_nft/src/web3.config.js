@@ -2,7 +2,7 @@ import Web3 from "web3";
 
 const web3 = new Web3(window.ethereum);
 
-const COOKIE_TOKEN_CONTRACT = "0xdf256F0aC364e9dBad0D4FEb0c1930d9F7493603";
+const COOKIE_TOKEN_CONTRACT = "0x2867fC15eE4b3C116eBD6a2f47c722fcb0292B9E";
 const COOKIE_TOKEN_ABI = [
   {
     inputs: [],
@@ -232,6 +232,29 @@ const COOKIE_TOKEN_ABI = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+    ],
+    name: "mintNFT",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "name",
     outputs: [
@@ -343,7 +366,7 @@ const COOKIE_TOKEN_ABI = [
   },
 ];
 
-const ETH_SWAP_CONTRACT = "0x9b15B206b15B13d577110c81F7c19E64324eEB4d";
+const ETH_SWAP_CONTRACT = "0x9152d8f0627c46F4bBD4be777d9dc1e61b1ec622";
 const ETH_SWAP_ABI = [
   {
     inputs: [
@@ -443,7 +466,7 @@ const ETH_SWAP_ABI = [
   },
 ];
 
-const MINT_NFT_CONTRACT = "0x56D4644d5d59bD76f2e609F7eD9837eE02FB7cCa";
+const MINT_NFT_CONTRACT = "0x22F17F2411A668eA1D3514B7C0e23df5305d99c1";
 const MINT_NFT_ABI = [
   {
     inputs: [
@@ -845,6 +868,19 @@ const MINT_NFT_ABI = [
   },
   {
     inputs: [],
+    name: "randomNumView",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "renounceOwnership",
     outputs: [],
     stateMutability: "nonpayable",
@@ -1064,7 +1100,7 @@ const MINT_NFT_ABI = [
   },
 ];
 
-const SALE_NFT_CONTRACT = "0x5F2c70bEDFA1FC127b9fe87A7B92544C17235b06";
+const SALE_NFT_CONTRACT = "0xc857D7e9afCA42fe4e2F49EDA86b3516cC6Bcc39";
 const SALE_NFT_ABI = [
   {
     inputs: [
@@ -1192,7 +1228,10 @@ const SALE_NFT_ABI = [
   },
 ];
 
-const COOKIE_TOKEN = new web3.eth.Contract(COOKIE_TOKEN_ABI, COOKIE_TOKEN_CONTRACT);
+const COOKIE_TOKEN = new web3.eth.Contract(
+  COOKIE_TOKEN_ABI,
+  COOKIE_TOKEN_CONTRACT
+);
 const ETH_SWAP = new web3.eth.Contract(ETH_SWAP_ABI, ETH_SWAP_CONTRACT);
 const MINT_NFT = new web3.eth.Contract(MINT_NFT_ABI, MINT_NFT_CONTRACT);
 const SALE_NFT = new web3.eth.Contract(SALE_NFT_ABI, SALE_NFT_CONTRACT);

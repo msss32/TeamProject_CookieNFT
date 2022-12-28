@@ -6,8 +6,8 @@ import Loading from "../component/Loading";
 
 const Mint = ({ web3, account }) => {
   const cardPickRef = useRef();
-  const cardPick = () => {
-    cardPickRef.current.cardPick();
+  const cardPick = (imgNum) => {
+    cardPickRef.current.cardPick(imgNum);
   };
 
   // 로딩페이지 활성화 변수
@@ -47,10 +47,26 @@ const Mint = ({ web3, account }) => {
 
   /**카드 뽑기 함수 */
   const cardMinting = async () => {
-    await MINT_NFT.methods.cookieMint().send({
+    const test = await MINT_NFT.methods.cookieMint().send({
       from: account,
     });
-    cardPick();
+    const imgNum = test.events.Transfer?.returnValues.tokenId;
+    console.log(imgNum);
+    if (imgNum) {
+      cardPick(imgNum);
+    } else {
+      cardPick(undefined);
+    }
+    // //nft 이미지 뽑기 작업중! 일단 주석해 놓은거예여
+    // let nftNum = await MINT_NFT.methods
+    //   .tokenOfOwnerByIndex(account, MINT_NFT.methods.balanceOf(account) - 1)
+    //   .call({ from: account });
+    // console.log(nftNum);
+    // let nftJson = await MINT_NFT.methods.tokenURI(nftNum).call();
+    // console.log(nftJson);
+    //   fetch(nftJson)
+    //     .then((response) => response.json())
+    //     .then((data) => cardPick(data.image));
   };
 
   // console.log(MINT_NFT);
