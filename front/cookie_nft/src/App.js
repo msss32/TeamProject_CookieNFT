@@ -64,6 +64,10 @@ const login = async () => {
     }
   };
 */
+
+  // const a = () => {
+  //   console.log(account);
+  // };
   return (
     <>
       <Header />
@@ -73,13 +77,11 @@ const login = async () => {
         <Routes>
           <Route index element={<Main />} />
           <Route path="/mynft" element={<MyNFT account={account} />} />
-          <Route
-            path="/mint"
-            element={<Mint web3={web3} account={account} />}
-          />
+          <Route path="/mint" element={<Mint web3={web3} account={account} />} />
           <Route path="/NftInfo" element={<NftInfo />} />
         </Routes>
       )}
+      {/* <button onClick={a}></button> */}
     </>
   );
 }
