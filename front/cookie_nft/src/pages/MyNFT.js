@@ -21,7 +21,7 @@ const MyNFT = ({ account }) => {
   const getMyNftList = async () => {
     try {
       const myNftLength = await MINT_NFT.methods.balanceOf(account).call();
-      console.log("내 보유 nft", myNftLength);
+      console.log("내 보유 nft", myNftLength+"개");
       const myNftLengthArr = [];
       for (let i = 0; i < myNftLength; i++) {
         const myNftTokenId = await MINT_NFT.methods
@@ -33,7 +33,8 @@ const MyNFT = ({ account }) => {
             return response.json();
           })
           .then((data) => {
-            myNftLengthArr.push(data.image);
+            console.log(data)
+            myNftLengthArr.push(data);
             if (myNftLengthArr.length === Number(myNftLength)) {
               setmyNftArr(myNftLengthArr);
               resEnd(true);
@@ -48,8 +49,9 @@ const MyNFT = ({ account }) => {
 
   // 랜더링시 실행ㄱ
   useEffect(() => {
-    console.log(account);
+    console.log("현재 계정 :",account);
     getMyNftList();
+    console.log(myNftArr)
   }, [res]);
 
   /* 
